@@ -12,3 +12,6 @@ print(square)
 def square(x):
     return x * x
 print(square)
+
+# compound lambda
+compose1 = lambda f,g: lambda x: f(g(x))
