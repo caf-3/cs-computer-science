@@ -1,6 +1,6 @@
 from operator import getitem
 from fractions import gcd
-# pairs 
+# pairs
 # #(list)
 pairs = [25, 10]
 x, y = pairs
@@ -17,33 +17,57 @@ print(f'getitem(pairs, 1): {getitem(pairs, 1)}')
 
 # Representing Rational Numbers.
 
+
 def add_rationals(x, y):
-        nx, dx = numer(x), denom(x)
-        ny, dy = numer(y), denom(y)
-        return rational(nx * dy + ny * dx, dx * dy)
+    nx, dx = numer(x), denom(x)
+    ny, dy = numer(y), denom(y)
+    return rational(nx * dy + ny * dx, dx * dy)
+
+
 def mul_rationals(x, y):
     return rational(numer(x) * numer(y), denom(x) * denom(y))
-def print_rational(x):
+# def print_rational(x):
     print(numer(x), '/', denom(x))
+
+
 def rationals_are_equal(x, y):
     return numer(x) * denom(y) == numer(y) * denom(x)
+
 
 def rational(n, d):
     g = gcd(n, d)
     return (n//g, d//g)
 
+
 def numer(x):
     return x[0]
+
 
 def denom(x):
     return x[1]
 
+
 half = rational(1, 2)
 
-print_rational(half)
+# print_rational(half)
 
 third = rational(1, 3)
 
 rational(mul_rationals(half, third)[0], mul_rationals(half, third)[1])
 
-print_rational(add_rationals(third, third))
+# print_rational(add_rationals(third, third))
+
+
+def pair(x, y):
+    """Return a function that represents a pair."""
+    def get(index):
+        if index == 0:
+            return x
+        elif index == 1:
+            return y
+    return get
+
+
+def select(p, i):
+    """Return the element at index i of pair p."""
+    return p(i)
