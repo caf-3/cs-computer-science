@@ -24,3 +24,21 @@ function stringSearch(longStr, shortStr) {
 }
 
 console.log(stringSearch("meo bro meu bro", "bro"))
+
+/**
+ * 
+ * @param {String} longStr 
+ * @param {String} shortStr 
+ */
+function naiveSolution(longStr, shortStr) {
+  let count = 0;
+
+  for (let i = 0; i < longStr.length; i++) {
+    for (let j = 0; j <= shortStr.length; j++) {
+      if (longStr[i] != shortStr[i+j]) {
+        break
+      }
+    }
+  }
+  return count
+}
