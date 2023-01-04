@@ -7,9 +7,9 @@ function stringSearch(longStr, shortStr) {
   let count = 0;
   let matches = 0;
 
-  for (let i = matches; i < longStr.length; i++) {
+  for (let i = 0; i < longStr.length; i++) {
     for (let j = matches; j <= shortStr.length; j++) {
-      // console.log(longStr[i], shortStr[j], { i, j, matches, count })
+      console.log(longStr[i], shortStr[j], { i, j, matches, count })
       if (longStr[i] != shortStr[j]) {
         matches = 0;
         break
@@ -23,4 +23,4 @@ function stringSearch(longStr, shortStr) {
   return count
 }
 
-console.log(stringSearch("meo bro meu bro", "meu"))
+console.log(stringSearch("meo bro meu bro", "bro"))
