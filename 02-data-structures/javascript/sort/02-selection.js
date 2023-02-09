@@ -7,15 +7,13 @@ function naiveSelectionSort(arr) {
     let swaped
     for (let i = 0; i < arr.length; i++) {
         let minimum = i
-        swaped = false
         for (let j = i + 1; j < arr.length; j++) {
             // compare the actual minimun with the the current vallue
             if (arr[minimum] > arr[j]) {
                 minimum = j
-                swaped = true
             }
         }
-        if (swaped) {
+        if (minimum != i) {
             let temp = arr[i]
             arr[i] = arr[minimum]
             arr[minimum] = temp
