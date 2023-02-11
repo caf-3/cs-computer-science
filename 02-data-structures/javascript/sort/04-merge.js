@@ -1,3 +1,4 @@
+// @ts-check
 /**
  * this function will merge two sorted arrays and return one sorted array
  * @param {Array} arr1 
@@ -32,7 +33,7 @@ function merge(arr1, arr2) {
      * The above loop can end if only one exausted array
      * We need to ensure that all arrays are exausted
      */
-    while (i < arr1.length && j < arr2.length) {
+    while (i < arr1.length) {
         results.push(arr1[i])
         i++ // we increment one to treat with the next arr1 index value
     }
@@ -44,3 +45,16 @@ function merge(arr1, arr2) {
 }
 
 console.log(merge([2, 5, 13, 16, 40, 70], [4, 10, 11, 14, 20, 21, 33, 90]))
+
+/**
+ * This function sort an array using merge sort algorithm
+ * @param {Array} arr 
+ */
+function mergeSort(arr){
+    if (arr.length <= 1) return arr
+    let mid = Math.floor(arr.length/2)
+    let left = mergeSort(arr.slice(0, mid))
+    let right = mergeSort(arr.slice(mid))
+    return merge(left, right)
+}
+console.log(mergeSort([6, 23, 8, 21, 5, 61, 12]))
