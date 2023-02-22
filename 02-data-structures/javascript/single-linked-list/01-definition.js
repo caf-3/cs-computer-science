@@ -1,4 +1,20 @@
 // @ts-check
+
+/**
+ * @typedef {any} NodeVal
+ */
+
+// types
+/**
+ * @typedef NodeClass
+ * @type {object}
+ * @property {NodeVal} val - node value
+ * @property {NodeClass | null } next - next node
+ */
+
+/**
+ * @type {NodeClass}
+ */
 class ListNode{
     /**
      * 
@@ -15,7 +31,9 @@ class ListNode{
 
 class SinglyLinkedList{
     constructor(){
+        /** @type {NodeClass | null} */
         this.head = null
+        
         this.tail = null
         this.length = 0
     }
@@ -39,10 +57,34 @@ class SinglyLinkedList{
         this.length += 1
         return this
     }
+
+    pop(){
+        // base case
+        if(!this.length) return
+        //  current list value (starting from head)
+        let current = this.head
+        /** @type any - a variable to store the previous value before the tail */
+        let previous
+        /** @type {NodeClass | null} - previous node before tail */
+        let previousNode = current
+        while(current){
+            if(current.next) previousNode = current
+            previous = current.val
+            current = current.next
+        }
+        if(previousNode) previousNode.next = null
+        this.tail = previousNode
+        this.length--
+        return previous
+    }
 }
 
 const list = new SinglyLinkedList()
 list.push(1)
 list.push(5)
-list.push("A new value")
+list.push(3)
+list.push(13)
+list.push(8)
+console.log(list)
+console.log(list.pop())
 console.log(list)
