@@ -112,8 +112,29 @@ class SinglyLinkedList {
         return this
 
     }
+
+    /**
+     * Access a node at given @index
+     * @param {number} index - Node index
+     */
+    get(index){
+        if(index < 0 || index >= this.length) return null
+        let currentNode = this.head
+        let counter = 0
+        while(currentNode?.next){
+            if(counter == index) return currentNode
+            currentNode = currentNode.next
+        }
+        return currentNode
+
+    }
 }
 
 const list = new SinglyLinkedList()
 list.unshift("hi")
+list.push(4)
+list.push(6)
+list.push("a value")
+list.unshift("a name")
 console.log(list)
+console.log(list.get(5))
