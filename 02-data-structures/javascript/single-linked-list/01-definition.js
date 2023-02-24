@@ -62,26 +62,24 @@ class SinglyLinkedList {
 
     pop() {
         // base case
-        if (!this.length) return
+        if (!this.head) return
         //  current list value (starting from head)
         let current = this.head
         /** @type any - a variable to store the previous value before the tail */
-        let previous
         /** @type {NodeClass | null} - previous node before tail */
         let previousNode = current
-        while (current) {
-            if (current.next) previousNode = current
-            previous = current.val
+        while (current?.next) {
+            previousNode = current
             current = current.next
         }
         if(this.length == 0){
             this.tail = null
             this.head = null
         }
-        if (previousNode) previousNode.next = null
+        previousNode.next = null
         this.tail = previousNode
         this.length--
-        return previous
+        return current
     }
 
     shift() {
@@ -95,21 +93,27 @@ class SinglyLinkedList {
         return removedHead
 
     }
+
+     /**
+     * 
+     * @param {any} value - A value to be inserted in the end
+     */
+    unshift(value){
+        const newNode = new ListNode(value)
+        if (!this.head) {
+            this.head = newNode
+            this.tail = newNode
+        }else {
+            const currentHead = this.head
+            newNode.next = currentHead
+            this.head = newNode
+        }
+        this.length++
+        return this
+
+    }
 }
 
 const list = new SinglyLinkedList()
-list.push(1)
-list.push(5)
-list.push(3)
-list.push(13)
-list.push(8)
-console.log(list)
-console.log("POP", list.pop())
-console.log(list)
-console.log("SHIFT", list.shift())
-console.log("SHIFT", list.shift())
-console.log("SHIFT", list.shift())
-console.log("SHIFT", list.shift())
-console.log("SHIFT", list.shift())
-console.log("SHIFT", list.shift())
+list.unshift("hi")
 console.log(list)
