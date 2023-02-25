@@ -72,7 +72,7 @@ class SinglyLinkedList {
             previousNode = current
             current = current.next
         }
-        if(this.length == 0){
+        if (this.length == 0) {
             this.tail = null
             this.head = null
         }
@@ -87,23 +87,23 @@ class SinglyLinkedList {
         const removedHead = this.head
         this.head = removedHead?.next || null
         this.length--
-        if(this.length == 0){
+        if (this.length == 0) {
             this.tail = null
         }
         return removedHead
 
     }
 
-     /**
-     * 
-     * @param {any} value - A value to be inserted in the end
-     */
-    unshift(value){
+    /**
+    * 
+    * @param {any} value - A value to be inserted in the end
+    */
+    unshift(value) {
         const newNode = new ListNode(value)
         if (!this.head) {
             this.head = newNode
             this.tail = newNode
-        }else {
+        } else {
             const currentHead = this.head
             newNode.next = currentHead
             this.head = newNode
@@ -117,24 +117,33 @@ class SinglyLinkedList {
      * Access a node at given @index
      * @param {number} index - Node index
      */
-    get(index){
-        if(index < 0 || index >= this.length) return null
+    get(index) {
+        if (index < 0 || index >= this.length) return null
         let currentNode = this.head
         let counter = 0
-        while(currentNode?.next){
-            if(counter == index) return currentNode
-            currentNode = currentNode.next
+        while (counter != index) {
+            currentNode = currentNode?.next || null
+            counter++
         }
         return currentNode
 
     }
+
+    /**
+     * Change the value of a node 
+     * - At index with given value
+     * - Returns true if the change happended
+     * - Returns false if node not found at given index
+     * @param {number} index 
+     * @param {any} value 
+     * @returns {boolean}
+     */
+    set(index, value) {
+        const node = this.get(index)
+        if(!node) return false
+        node.val = value
+        return true
+    }
 }
 
 const list = new SinglyLinkedList()
-list.unshift("hi")
-list.push(4)
-list.push(6)
-list.push("a value")
-list.unshift("a name")
-console.log(list)
-console.log(list.get(5))
