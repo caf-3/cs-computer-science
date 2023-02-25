@@ -1,5 +1,4 @@
 // @ts-check
-
 /**
  * @typedef {any} NodeVal
  */
@@ -41,7 +40,7 @@ class SinglyLinkedList {
     }
 
     /**
-     * 
+     * Insert a node in the end
      * @param {any} value - A value to be inserted in the end
      */
     push(value) {
@@ -60,6 +59,10 @@ class SinglyLinkedList {
         return this
     }
 
+    /**
+     * Remove a node in the end
+     * @returns {NodeClass | undefined}
+     */
     pop() {
         // base case
         if (!this.head) return
@@ -82,6 +85,11 @@ class SinglyLinkedList {
         return current
     }
 
+    /**
+     * Remove the first node of the list
+     * @returns {NodeClass | null | undefined}
+     */
+
     shift() {
         if (!this.length) return
         const removedHead = this.head
@@ -95,8 +103,8 @@ class SinglyLinkedList {
     }
 
     /**
-    * 
-    * @param {any} value - A value to be inserted in the end
+    * Insert a new node to the beginning
+    * @param {any} value - A value to be inserted in the beginning
     */
     unshift(value) {
         const newNode = new ListNode(value)
@@ -132,7 +140,7 @@ class SinglyLinkedList {
     /**
      * Change the value of a node 
      * - At index with given value
-     * - Returns true if the change happended
+     * - Returns true for success change 
      * - Returns false if node not found at given index
      * @param {number} index 
      * @param {any} value 
@@ -144,6 +152,43 @@ class SinglyLinkedList {
         node.val = value
         return true
     }
+    
+    /**
+     * Insert a to the list at a given position/index
+     * - At index with given value
+     * - Returns true for success insertion
+     * - Returns false if
+     * - - if the index is less or greather than the length of the list
+     * @param {number} index 
+     * @param {any} value 
+     * @returns {boolean}
+     */
+    insert(index, value){
+        if(index < 0 || index > this.length) return false
+
+    
+        if(index == 0) return this.unshift(value) && true
+        if(index == this.length) return this.push(value) && true
+        const previousNode = this.get(index - 1)
+        const previousNodeNextNode = previousNode?.next
+        const newNode = new ListNode(value)
+        if(previousNode) previousNode.next = newNode
+        newNode.next = previousNodeNextNode || null
+        return true
+    }
 }
 
 const list = new SinglyLinkedList()
+
+list.unshift(1)
+list.unshift("Spain")
+list.push("My name")
+list.push("MOZAMBIQUE")
+console.log(list)
+const newPosition = 3
+console.log(list.get(newPosition))
+console.log(list.insert(newPosition, "PORTUGAL"))
+console.log(list.get(newPosition))
+// console.log(list)
+
+
