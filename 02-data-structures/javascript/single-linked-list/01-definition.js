@@ -168,12 +168,13 @@ class SinglyLinkedList {
 
     
         if(index == 0) return this.unshift(value) && true
-        if(index == this.length) return this.push(value) && true
+        if(index == this.length) return !!this.push(value)
         const previousNode = this.get(index - 1)
         const previousNodeNextNode = previousNode?.next
         const newNode = new ListNode(value)
         if(previousNode) previousNode.next = newNode
         newNode.next = previousNodeNextNode || null
+        this.length++
         return true
     }
 }
