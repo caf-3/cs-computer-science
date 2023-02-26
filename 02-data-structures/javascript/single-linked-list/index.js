@@ -177,19 +177,50 @@ class SinglyLinkedList {
         this.length++
         return true
     }
+
+    /**
+     * Remove a node at a given index
+     * - Returns
+     * - - undefined if the index is less than zero or greater than the length
+     * - - The value of the node removed
+     * @param {number} index 
+     * @returns {NodeClass | null | undefined}
+     */
+    remove(index){
+        // if the index is less than zero or greater than the length
+        if(index < 0 || index >= this.length) return
+
+        // if the index is same as the length - 1, pop
+        if(index == this.length - 1) return this.pop()
+
+        // if the index is 0 shift
+        if(index == 0) return this.shift()
+
+        // accessing the node before
+        const previousNode = this.get(index - 1)
+        // get the node we want to remove
+        const removedNode = previousNode?.next
+
+        // remove the node
+        if(previousNode) previousNode.next = removedNode?.next || null
+
+        this.length--
+
+        return removedNode
+
+    }
 }
 
 const list = new SinglyLinkedList()
 
-list.unshift(1)
-list.unshift("Spain")
-list.push("My name")
-list.push("MOZAMBIQUE")
-console.log(list)
-const newPosition = 3
-console.log(list.get(newPosition))
-console.log(list.insert(newPosition, "PORTUGAL"))
-console.log(list.get(newPosition))
-// console.log(list)
+list.push(1)
+list.push(2)
+list.push(3)
+list.push(4)
+console.log(list.length)
+console.log(list.get(4))
+console.log(list.remove(4))
+console.log(list.get(4))
+console.log(list.length)
 
 
