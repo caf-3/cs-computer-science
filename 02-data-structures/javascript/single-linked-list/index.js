@@ -41,6 +41,7 @@ class SinglyLinkedList {
 
     /**
      * Insert a node in the end
+     * - Complexity - O(1)
      * @param {any} value - A value to be inserted in the end
      */
     push(value) {
@@ -61,6 +62,7 @@ class SinglyLinkedList {
 
     /**
      * Remove a node in the end
+     * - Complexity - O(N)
      * @returns {NodeClass | undefined}
      */
     pop() {
@@ -87,6 +89,7 @@ class SinglyLinkedList {
 
     /**
      * Remove the first node of the list
+     * - Complexity - O(1)
      * @returns {NodeClass | null | undefined}
      */
 
@@ -103,8 +106,9 @@ class SinglyLinkedList {
     }
 
     /**
-    * Insert a new node to the beginning
-    * @param {any} value - A value to be inserted in the beginning
+    * Insert a new node to the beginning (BEST CASE)
+    * - Complexity - O(1)
+    * @param {any} value - A value to be inserted in the beginning (BEST CASE)
     */
     unshift(value) {
         const newNode = new ListNode(value)
@@ -123,6 +127,8 @@ class SinglyLinkedList {
 
     /**
      * Access a node at given @index
+     * - Complexity - O(1) - In the beginning (BEST CASE)
+     * - Complexity - O(N) - In the middle OR end (WORST CASE)
      * @param {number} index - Node index
      */
     get(index) {
@@ -140,6 +146,7 @@ class SinglyLinkedList {
     /**
      * Change the value of a node 
      * - At index with given value
+     * - Complexity - O(1)
      * - Returns true for success change 
      * - Returns false if node not found at given index
      * @param {number} index 
@@ -148,13 +155,14 @@ class SinglyLinkedList {
      */
     set(index, value) {
         const node = this.get(index)
-        if(!node) return false
+        if (!node) return false
         node.val = value
         return true
     }
-    
+
     /**
      * Insert a to the list at a given position/index
+     * - Complexity - O(1)
      * - At index with given value
      * - Returns true for success insertion
      * - Returns false if
@@ -163,16 +171,16 @@ class SinglyLinkedList {
      * @param {any} value 
      * @returns {boolean}
      */
-    insert(index, value){
-        if(index < 0 || index > this.length) return false
+    insert(index, value) {
+        if (index < 0 || index > this.length) return false
 
-    
-        if(index == 0) return this.unshift(value) && true
-        if(index == this.length) return !!this.push(value)
+
+        if (index == 0) return this.unshift(value) && true
+        if (index == this.length) return !!this.push(value)
         const previousNode = this.get(index - 1)
         const previousNodeNextNode = previousNode?.next
         const newNode = new ListNode(value)
-        if(previousNode) previousNode.next = newNode
+        if (previousNode) previousNode.next = newNode
         newNode.next = previousNodeNextNode || null
         this.length++
         return true
@@ -180,21 +188,23 @@ class SinglyLinkedList {
 
     /**
      * Remove a node at a given index
+     * - Complexity - O(1) - In the beginning (BEST CASE)
+     * - Complexity - O(N) - In the middle OR end (WORST CASE)
      * - Returns
      * - - undefined if the index is less than zero or greater than the length
      * - - The value of the node removed
      * @param {number} index 
      * @returns {NodeClass | null | undefined}
      */
-    remove(index){
+    remove(index) {
         // if the index is less than zero or greater than the length
-        if(index < 0 || index >= this.length) return
+        if (index < 0 || index >= this.length) return
 
         // if the index is same as the length - 1, pop
-        if(index == this.length - 1) return this.pop()
+        if (index == this.length - 1) return this.pop()
 
         // if the index is 0 shift
-        if(index == 0) return this.shift()
+        if (index == 0) return this.shift()
 
         // accessing the node before
         const previousNode = this.get(index - 1)
@@ -202,31 +212,36 @@ class SinglyLinkedList {
         const removedNode = previousNode?.next
 
         // remove the node
-        if(previousNode) previousNode.next = removedNode?.next || null
+        if (previousNode) previousNode.next = removedNode?.next || null
 
         this.length--
 
         return removedNode
 
     }
-    print(){
+    print() {
         const arr = []
         let current = this.head
-        while(current){
+        while (current) {
             arr.push(current.val)
             current = current.next
         }
         console.log(arr)
     }
-    reverse(){
+
+    /**
+     * Reverse a linked list
+     * - Complexity - O(N)
+     */
+    reverse() {
         let node = this.head
         this.head = this.tail
         this.tail = node
         let next
         let prev = null
-        for(let i = 0; i < this.length; i++) {
+        for (let i = 0; i < this.length; i++) {
             next = node?.next
-            if(node) node.next = prev
+            if (node) node.next = prev
             prev = node
             node = next || null
         }
