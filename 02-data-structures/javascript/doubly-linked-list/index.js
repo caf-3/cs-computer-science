@@ -138,10 +138,37 @@ class DoublyLinkedList {
         this.length--
         return removedHead
     }
+
+    /**
+     * Get a node at given
+     * @param {number} index 
+     */
+    get(index) {
+        if (index < 0 || index >= this.length) return null
+        let middle = parseInt(String(this.length / 2))
+        let counter = index > middle ? this.length - 1 : 0
+        let node = index > middle ? this.tail : this.head
+        // from the beginning
+        while (counter != index) {
+            if (index > middle) {
+                node = node?.prev || null
+                counter--
+            } else {
+                node = node?.next || null
+                counter++
+            }
+        }
+        return node
+
+    }
 }
 
-// let list = new DoublyLinkedList()
+let list = new DoublyLinkedList()
 
-// list.push(4)
-// list.push(6)
-// list.push(11)
+list.push(4)
+list.push(6)
+list.push(11)
+list.push(8)
+list.push(5)
+console.log(list)
+console.log(list.get(0)?.val)
