@@ -71,6 +71,31 @@ class DoublyLinkedList {
     }
 
     /**
+     * This function insert a new node to the beginning of the list
+     * @param {any} value 
+     */
+    unshift(value) {
+        // create new node
+        const newNode = new ListNode(value)
+
+        // define tail and head for empty list
+        if (this.length == 0) {
+            this.head = newNode
+            this.tail = newNode
+        } else {
+            if (this.head) {
+                this.head.prev = newNode
+                newNode.next = this.head
+                this.head = newNode
+            }
+        }
+
+        this.length++
+        return this
+
+    }
+
+    /**
      * Remove the last item
      */
     pop() {
@@ -105,7 +130,7 @@ class DoublyLinkedList {
         } else {
             // get previous head next property to be the new head
             this.head = removedHead?.next || null
-            
+
             if (this.head?.next) this.head.prev = null
             if (removedHead?.next) removedHead.next = null
         }
@@ -120,5 +145,3 @@ class DoublyLinkedList {
 // list.push(4)
 // list.push(6)
 // list.push(11)
-// console.log(list)
-// console.log('tail', list.tail)
