@@ -140,7 +140,7 @@ class DoublyLinkedList {
     }
 
     /**
-     * Get a node at given
+     * Get a node at given index
      * @param {number} index 
      */
     get(index) {
@@ -161,6 +161,17 @@ class DoublyLinkedList {
         return node
 
     }
+
+    /**
+     * Set a new value to a node at given index
+     * @param {number} index 
+     * @param {any} value 
+     */
+    set(index, value){
+        const node = this.get(index)
+        if(node) node.val = value
+        return node
+    }
 }
 
 let list = new DoublyLinkedList()
@@ -172,3 +183,5 @@ list.push(8)
 list.push(5)
 console.log(list)
 console.log(list.get(0)?.val)
+console.log(list.set(0, "new value babe")?.val)
+console.log(list)
