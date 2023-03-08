@@ -200,5 +200,30 @@ class DoublyLinkedList {
 
     }
 
+    /**
+     * Remove a value at given index
+     * @param {any} index 
+     */
+    remove(index){
+        if (index < 0 || index >= this.length) return
+
+        if(index == 0) return this.shift()
+        if(index == this.length-1) return this.pop()
+        
+        const removedNode = this.get(index)
+        const beforeNode = removedNode?.prev
+        const afterNode = removedNode?.next
+
+        if(beforeNode) beforeNode.next = afterNode || null 
+        if(afterNode) afterNode.prev = beforeNode || null 
+
+        if(removedNode){
+            removedNode.prev = null
+            removedNode.next = null
+        }
+        this.length--
+        return removedNode
+    }
+
 
 }
