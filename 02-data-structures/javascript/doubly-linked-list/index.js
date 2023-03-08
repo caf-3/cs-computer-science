@@ -172,16 +172,35 @@ class DoublyLinkedList {
         if(node) node.val = value
         return node
     }
+
+    /**
+     * This funciton insert a value on a given position
+     * @param {Number} index 
+     * @param {any} value 
+     * @returns 
+     */
+
+    insert(index, value){
+        if (index < 0 || index > this.length) return false
+
+        if(index == 0) return this.unshift(value) && true
+
+        if(index == this.length) return !!this.push(value)
+
+        const newNode = new ListNode(value)
+
+        const beforeNode = this.get(index - 1)
+        const afterNode = beforeNode?.next
+        if(beforeNode) beforeNode.next = newNode
+        newNode.prev = beforeNode
+        if(afterNode) afterNode.prev = newNode
+        newNode.next = afterNode || null
+        
+        
+        this.length++
+        return true
+
+    }
+
+
 }
-
-let list = new DoublyLinkedList()
-
-list.push(4)
-list.push(6)
-list.push(11)
-list.push(8)
-list.push(5)
-console.log(list)
-console.log(list.get(0)?.val)
-console.log(list.set(0, "new value babe")?.val)
-console.log(list)
