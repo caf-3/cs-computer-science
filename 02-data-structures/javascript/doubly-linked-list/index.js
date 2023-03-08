@@ -47,6 +47,7 @@ class DoublyLinkedList {
 
     /**
      * This function insert a new node to the end of the list
+     * - Complexity - O(1)
      * @param {any} value 
      */
     push(value) {
@@ -72,6 +73,7 @@ class DoublyLinkedList {
 
     /**
      * This function insert a new node to the beginning of the list
+     * - Complexity - O(1)
      * @param {any} value 
      */
     unshift(value) {
@@ -97,6 +99,7 @@ class DoublyLinkedList {
 
     /**
      * Remove the last item
+     * - Complexity - O(1)
      */
     pop() {
         // return undefined if the list is empty
@@ -118,6 +121,7 @@ class DoublyLinkedList {
 
     /**
      * Remove the first item
+     * - Complexity - O(1)
      */
     shift() {
         // return undefined if the list is empty
@@ -141,6 +145,7 @@ class DoublyLinkedList {
 
     /**
      * Get a node at given index
+     * - Complexity - O(N/2) STILL O(N)
      * @param {number} index 
      */
     get(index) {
@@ -165,6 +170,7 @@ class DoublyLinkedList {
     /**
      * Set a new value to a node at given index
      * @param {number} index 
+     * - Complexity - O(1)
      * @param {any} value 
      */
     set(index, value){
@@ -176,6 +182,7 @@ class DoublyLinkedList {
     /**
      * This funciton insert a value on a given position
      * @param {Number} index 
+     * - Complexity - O(1)
      * @param {any} value 
      * @returns 
      */
@@ -202,6 +209,7 @@ class DoublyLinkedList {
 
     /**
      * Remove a value at given index
+     * - Complexity - O(1)
      * @param {any} index 
      */
     remove(index){
