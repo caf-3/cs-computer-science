@@ -191,10 +191,8 @@ class DoublyLinkedList {
 
         const beforeNode = this.get(index - 1)
         const afterNode = beforeNode?.next
-        if(beforeNode) beforeNode.next = newNode
-        newNode.prev = beforeNode
-        if(afterNode) afterNode.prev = newNode
-        newNode.next = afterNode || null
+        if(beforeNode) beforeNode.next = newNode, newNode.prev = beforeNode
+        if(afterNode) afterNode.prev = newNode, newNode.next = afterNode || null
         
         
         this.length++
