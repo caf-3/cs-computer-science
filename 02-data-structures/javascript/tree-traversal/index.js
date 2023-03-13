@@ -35,6 +35,26 @@ class TreeTraversal extends BinarySearchTree{
         }
         return data
     }
+
+    /**
+     * Deep frist Search Pre Order
+     */
+    DFSPreOrder(){
+        const data = []
+
+        /**
+         * 
+         * @param {BSTreeNodeClass | null} node 
+         */
+        function traverse(node){
+            data.push(node?.value)
+            if(node?.left) traverse(node.left)
+            if(node?.right) traverse(node.right)
+        }
+        traverse(this.root)
+        return data
+
+    }
 }
 
 let tree = new TreeTraversal()
@@ -52,4 +72,5 @@ tree.insert(14)
 tree.insert(3)
 tree.insert(2)
 console.log(tree.BSF())
+console.log(tree.DFSPreOrder())
 
