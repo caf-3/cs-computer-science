@@ -9,20 +9,19 @@ class MaxBinaryHeap {
     /**
      * This function bubble up inserted node in case it's greater than its parrent
      */
-    #bubbleUp() {
-        let index = this.values.length - 1
+    #bubbleUp(index) {
+
         // get parrent node index formula (n-1)/2
         const element = this.values[index]
+        let parrentIndex = Math.floor((index - 1) / 2)
+        let parrentValue = this.values[parrentIndex]
+        if (element <= parrentValue || !parrentValue) return
+        console.log({ element, parrentValue })
+        this.values[parrentIndex] = element
+        this.values[index] = parrentValue
+        index = parrentIndex
+        return this.#bubbleUp(index)
 
-        while (true) {
-            let parrentIndex = Math.floor((index - 1) / 2)
-            let parrentValue = this.values[parrentIndex]
-            if (element <= parrentValue || !parrentValue) return
-            console.log({element, parrentValue})
-            this.values[parrentIndex] = element
-            this.values[index] = parrentValue
-            index = parrentIndex
-        }
     }
 
     /**
@@ -31,7 +30,7 @@ class MaxBinaryHeap {
      */
     insert(value) {
         this.values.push(value)
-        this.#bubbleUp()
+        this.#bubbleUp(this.values.length - 1)
         return this.values
 
     }
