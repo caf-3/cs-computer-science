@@ -1,7 +1,7 @@
 // @ts-check
 
-class MaxBinaryHeap {
-    constructor() {
+class MaxBinaryHeap{
+    constructor(){
         /** @type {Array<number>} - Max binary heap values */
         this.values = []
     }
@@ -10,30 +10,34 @@ class MaxBinaryHeap {
      * This function bubble up inserted node in case it's greater than its parrent
      * @param {number} index - Node index
      */
-    #bubbleUp(index) {
-
+    #bubbleUp(index){
         // get parrent node index formula (n-1)/2
-        const element = this.values[index]
-        let parrentIndex = Math.floor((index - 1) / 2)
-        let parrentValue = this.values[parrentIndex]
-        if (element <= parrentValue || !parrentValue) return
-        console.log({ element, parrentValue })
-        this.values[parrentIndex] = element
-        this.values[index] = parrentValue
-        index = parrentIndex
-        return this.#bubbleUp(index)
+        const parrentIndex = Math.floor((index - 1) / 2)
+        const parrentValue = this.values[parrentIndex]
+        const nodeValue = this.values[index]
 
+        // Recursive base case
+        if(nodeValue < parrentValue || !parrentValue) return 
+
+        // swap parrent value with inserted node value
+        this.values[parrentIndex] = nodeValue
+        this.values[index] = parrentValue
+        return this.#bubbleUp(parrentIndex)
+        
     }
 
     /**
      * 
      * @param {number} value 
      */
-    insert(value) {
+    insert(value){
         this.values.push(value)
-        this.#bubbleUp(this.values.length - 1)
-        return this.values
 
+        // bubble up for non first value
+        if(this.values.length > 1)  this.#bubbleUp(this.values.length-1)
+
+        return this.values
+        
     }
 
 }
