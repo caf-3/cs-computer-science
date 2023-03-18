@@ -1,45 +1,39 @@
 // @ts-check
 
-class MaxBinaryHeap{
-    constructor(){
+class MaxBinaryHeap {
+    constructor() {
         /** @type {Array<number>} - Max binary heap values */
         this.values = []
     }
 
     /**
      * This function bubble up inserted node in case it's greater than its parrent
-     * @param {number} index - Node index
      */
-    #bubbleUp(index){
+    #bubbleUp() {
+        let index = this.values.length - 1
         // get parrent node index formula (n-1)/2
-        const parrentIndex = Math.floor((index - 1) / 2)
-        const parrentValue = this.values[parrentIndex]
-        const nodeValue = this.values[index]
+        const element = this.values[index]
 
-        console.log({ index, parrentIndex, parrentValue, nodeValue})
-
-        // Recursive base case
-        if(nodeValue < parrentValue) return 
-
-        // swap parrent value with inserted node value
-        this.values[parrentIndex] = nodeValue
-        this.values[index] = parrentValue
-        this.#bubbleUp(parrentIndex)
-        
+        while (true) {
+            let parrentIndex = Math.floor((index - 1) / 2)
+            let parrentValue = this.values[parrentIndex]
+            if (element <= parrentValue || !parrentValue) return
+            console.log({element, parrentValue})
+            this.values[parrentIndex] = element
+            this.values[index] = parrentValue
+            index = parrentIndex
+        }
     }
 
     /**
      * 
      * @param {number} value 
      */
-    insert(value){
+    insert(value) {
         this.values.push(value)
-
-        // bubble up for non first value
-        if(this.values.length > 1)  this.#bubbleUp(this.values.length-1)
-
+        this.#bubbleUp()
         return this.values
-        
+
     }
 
 }
@@ -55,5 +49,8 @@ const maxBinaryHeap = new MaxBinaryHeap()
 maxBinaryHeap.insert(14)
 maxBinaryHeap.insert(33)
 maxBinaryHeap.insert(17)
+maxBinaryHeap.insert(27)
+maxBinaryHeap.insert(30)
+maxBinaryHeap.insert(22)
 maxBinaryHeap.insert(55)
-console.log(maxBinaryHeap.insert(27))
+console.log(maxBinaryHeap.values)
