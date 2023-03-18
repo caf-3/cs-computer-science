@@ -8,6 +8,7 @@ class MaxBinaryHeap {
 
     /**
      * This function bubble up inserted node in case it's greater than its parrent
+     * @param {number} index - Node index
      */
     #bubbleUp(index) {
 
