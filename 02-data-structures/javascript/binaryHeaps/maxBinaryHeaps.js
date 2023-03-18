@@ -27,7 +27,7 @@ class MaxBinaryHeap {
     }
 
     /**
-     * 
+     * Complexity - O(LogN)
      * @param {number} value 
      */
     insert(value) {
@@ -77,6 +77,7 @@ class MaxBinaryHeap {
     }
 
     /**
+     * Complexity - O(LogN)
      * Removes the root/max value
      */
     extractMax() {
