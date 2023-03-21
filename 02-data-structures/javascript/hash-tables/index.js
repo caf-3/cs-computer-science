@@ -64,6 +64,46 @@ class HashTable {
 
     }
 
+
+    /**
+     * Return all keys
+     */
+    keys(){
+        const keysArr = []
+        for(let i = 0; i < this.keyMap.length; i++){
+
+            if(this.keyMap[i]){
+                for(let j = 0; j < this.keyMap[i].length; j++){
+
+                    keysArr.push(this.keyMap[i][j][0])
+
+                }
+            }
+
+        }
+        return keysArr   
+    }
+
+
+    /**
+     * Return all values
+     */
+    values(){
+        const valuesArr = []
+        for(let i = 0; i < this.keyMap.length; i++){
+
+            if(this.keyMap[i]){
+                for(let j = 0; j < this.keyMap[i].length; j++){
+                    const value = this.keyMap[i][j][1]
+                    if(!valuesArr.includes(value)) valuesArr.push(value)
+
+                }
+            }
+
+        }
+        return valuesArr   
+    }
+
 }
 
 let ht = new HashTable(4)
@@ -72,5 +112,9 @@ ht.set("i was eating", "Beans")
 ht.set("Listening to", "J Cole")
 ht.set("song", "ATM")
 ht.set("verse", "uno dois tres")
+ht.set("song", "GUESS WHAT")
+ht.set("RUSS", "GUESS WHAT")
 console.log(ht.keyMap)
-console.log(ht.get("Listening to"))
+console.log(ht.get("song"))
+console.log(ht.keys())
+console.log(ht.values())
