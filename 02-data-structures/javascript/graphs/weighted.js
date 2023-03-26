@@ -1,6 +1,6 @@
 // @ts-check
 
-class WeightedGraph {
+export default class WeightedGraph {
     constructor() {
         /**
          * @type {Object<any, Array<{node: any, weight: Number}>>}
