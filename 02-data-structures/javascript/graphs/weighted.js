@@ -1,6 +1,6 @@
 // @ts-check
 
-class WeightedGrap {
+class WeightedGraph {
     constructor() {
         /**
          * @type {Object<any, Array<{node: any, weight: Number}>>}
@@ -31,7 +31,7 @@ class WeightedGrap {
     }
 }
 
-let g = new WeightedGrap()
+let g = new WeightedGraph()
 
 g.addVertex("A")
 g.addVertex("B")
