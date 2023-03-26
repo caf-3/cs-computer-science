@@ -13,7 +13,7 @@ class PriorityNode{
     }
 }
 
-class PriorityQueue {
+export default class PriorityQueue {
     constructor() {
         /** @type {Array<PriorityNode>} - min binary heap values */
         this.values = []
