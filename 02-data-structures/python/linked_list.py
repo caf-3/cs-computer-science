@@ -36,6 +36,21 @@ class LinkedList:
         string_list += str(current_node.get_value()) + "\n"
       current_node = current_node.get_next_node()
     return string_list
+  def remove_node(self, value_to_remove):
+    current_node = self.head_node
+    print(f"current node {current_node.get_value()}")
+
+    if(current_node.value == value_to_remove):
+      self.head_node = current_node.next_node
+    else:
+      while(current_node):
+        print(f"current node {current_node.get_value()}")
+
+        if(current_node.get_next_node().get_value() == value_to_remove):
+          current_node.next_node = current_node.next_node.get_next_node()
+          current_node = None
+        else:
+          current_node = current_node.get_next_node()
   
 
 # Test your code by uncommenting the statements below - did your list print to the terminal?
@@ -43,4 +58,8 @@ ll = LinkedList(5)
 ll.insert_beginning(70)
 ll.insert_beginning(5675)
 ll.insert_beginning(90)
+ll.insert_beginning(30)
+print(ll.stringify_list())
+ll.remove_node(70)
+print("############## NEW LINKED LIST ###############")
 print(ll.stringify_list())
